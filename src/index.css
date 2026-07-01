@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap'); /*Syne font*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); /*Montserrat font*/
 
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Outfit", sans-serif;
+  --font-fit: "Outfit", sans-serif;
+  --font-mont: "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Syne", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-clx-green: #14985A;
+  --color-clx-yellow: #D8AF45;
+  --color-clx-green2: #2CCA80;
 }
