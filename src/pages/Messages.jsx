@@ -1,6 +1,13 @@
+import { Helmet } from "react-helmet-async";
+
 export default function Messages() {
-  return (
+  	return (
     <div className="flex flex-1 w-full overflow-hidden text-slate-700"> 
+      <Helmet>
+		<title>Messages - Climax EMS</title>
+		<meta name='description' content='Climax EMS Staff Authentication' />
+	  </Helmet>
+
       <main className="flex flex-1 overflow-hidden gap-2 w-full">
         <aside className="flex shrink-0 w-100 flex-col overflo rounded-2xl bg-white p-6 shadow-sm">
           <h2 className="text-[32px] font-medium">Messages</h2>

@@ -1,13 +1,15 @@
-import Messages from "../pages/Messages";
 import Navbar from "../components/Navbar";
+import { Outlet } from "react-router-dom";
 
 function MainLayout() {
     return (
-        <main className="h-screen overflow-hidden flex flex-col px-6 py-2 gap-2 bg-[#F0F4F9]">
+        <section className="h-screen overflow-hidden flex flex-col px-6 py-4 gap-4 bg-[#F0F4F9]">
             <Navbar />
-            <Messages />
-        </main>
-    )
+            <main>
+                <Outlet />
+            </main>
+        </section>
+    );
 }
 
 export default MainLayout;
