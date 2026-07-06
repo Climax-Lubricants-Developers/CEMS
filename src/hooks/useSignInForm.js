@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function useSignInForm() {
     const [email, setEmail] = useState('');
@@ -6,6 +7,8 @@ export function useSignInForm() {
     const [step, setStep] = useState('email');
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     const emailInputRef = useRef(null);
     const passwordInputRef = useRef(null);
@@ -34,10 +37,11 @@ export function useSignInForm() {
                 setError('Enter a password');
                 passwordInputRef.current?.focus();
                 return;
+            } else {
+                navigate('/messages');
             }
             
             setError('');
-            alert(`Successfully signed in ${email}`);
         }
     };
 
@@ -57,7 +61,7 @@ export function useSignInForm() {
         const timeout = setTimeout(() => {
             if (step === 'email') emailInputRef.current?.focus();
             else if (step === 'password') passwordInputRef.current?.focus();
-        }, 400);
+        }, 300);
         return () => clearTimeout(timeout);
     }, [step]);
 

@@ -1,5 +1,5 @@
 import { ArrowUpRight, ChevronRight, CircleUserRound, CircleX, Copyright, Eye, EyeOff } from 'lucide-react';
-import logo from '../assets/slate700_logo.svg';
+import logo from '../assets/slate900_logo.svg';
 import { useSignInForm } from '../hooks/useSignInForm.js';
 import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
@@ -25,50 +25,45 @@ export default function SignIn() {
     const navigate = useNavigate();
 
     return (
-        <section className="min-h-screen flex items-center justify-center overflow-hidden bg-[#F0F4F9]">
+        <section className="min-h-screen flex items-center justify-center overflow-hidden bg-[#F0F4F9] text-sm">
             <Helmet>
                 <title>Sign in - Climax EMS</title>
                 <meta name='description' content='Climax EMS Staff Authentication' />
             </Helmet>
             <form 
                 onSubmit={handleFormSubmit}
-                className="relative max-w-120 w-full backdrop-blur-md flex flex-col items-center text-slate-700 p-8 bg-white rounded-4xl shadow shadow-slate-400/70 overflow-hidden"
+                className="relative max-w-112.5 w-full flex flex-col items-center justify-between gap-8 px-8 py-10 text-slate-900 bg-white rounded-4xl shadow shadow-slate-400/70 overflow-hidden"
             >
                 {/* Header */}
-                <header className='flex flex-col gap-4 items-center mb-4'>
-                    <div>
-                        <img src={logo} className="h-12" alt="Climax Logo" />
-                    </div>
-                    <div>
-                        <h1 className='text-[32px] font-black tracking-tighter'>Welcome</h1>
-                    </div>
+                <header className='m'>
+                    <img src={logo} className="h-12" alt="Climax Logo" />
                 </header>
 
                 {/* Sliding Viewport */}
                 <div 
-                    className='flex w-full transition-transform duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] gap-10'
+                    className='flex items-center w-full transition-transform duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] mb-2 gap-10'
                     style={{ transform: `translateX(${step === 'password' ? '-110%' : '0%'})` }}
                 >
                     {/* Step 1: Email Section */}
-                    <div className='min-w-full flex flex-col items-center shrink-0'>
-                        <h2 className='font-semibold text-center text-base mb-8'>Sign in with your Climax EMS account</h2>
-                        <div className={`font-fit w-full flex items-center relative h-14 px-6 py-4 rounded-xl ring-1 transition-all gap-2
+                    <div className='min-w-full flex flex-col items-center shrink-0 gap-8'>
+                        <h2 className='py-0.5 font-normal'>Sign in with your Climax EMS account</h2>
+                        <div className={`w-full h-14 flex items-center px-4 gap-2 rounded-2xl ring-1 transition-all
                             ${error && step === 'email'
-                                ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500/50'
-                                : 'ring-gray-300 focus-within:ring-2 focus-within:ring-clx-green'
+                                ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500'
+                                : 'ring-gray-400 focus-within:ring-2 focus-within:ring-clx-green'
                             }`}>
                             <input 
                                 ref={emailInputRef}
-                                type='email'
+                                type={'email'}
                                 name='email'
                                 autoComplete='username'
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 placeholder='Email@staff.climaxlubs.com'
-                                className='w-full focus:outline-none transition-all placeholder:text-gray-300 pr-2'
+                                className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400'
                                 disabled={step === 'password'}
                             />
-                            
+
                             {email && step === 'email' && (
                                 <button
                                     type='button'
@@ -89,29 +84,26 @@ export default function SignIn() {
                                 </button>
                             )}
                         </div>
-                        <div className="h-6 w-full text-left mt-1">
-                            {error && step === 'email' && <p className="text-[#e30000] text-sm">{error}</p>}
-                        </div>
                     </div>
 
                     {/* Step 2: Password Section */}
-                    <div className='min-w-full flex flex-col items-center shrink-0'>
+                    <div className='min-w-full flex flex-col items-center shrink-0 gap-8'>
                         <button
                             type='button'
                             onClick={handleBack}
-                            className='mb-7 active:ring-2 active:ring-clx-green group flex items-center gap-1 max-w-100 bg-slate-200 hover:bg-slate-100 w-auto px-2 py-1 rounded-full transition-all cursor-pointer'
+                            className='active:ring-2 active:ring-clx-green group flex items-center bg-slate-100 hover:bg-slate-200 w-auto px-3 py-1 rounded-full transition-all cursor-pointer select-none max-w-full'
                         >
-                            <CircleUserRound size={18} className='text-clx-green shrink-0' />
-                            <span className='mb-0.5 font-fit text-base truncate flex items-center text-clx-green '>
+                            <CircleUserRound size={16} className='text-clx-green mr-1.5 shrink-0' />
+                            <span className='block max-w-50 truncate text-clx-green font-normal leading-none align-middle mb-0.5'>
                                 {email}
                             </span>
-                            <CircleX size={18} className='ml-2 shrink-0'/>
+                            <CircleX size={16} className='text-clx-green2 ml-1.5 shrink-0'/>
                         </button>
                         
-                        <div className={`font-fit w-full flex items-center relative mb-1 h-14 px-6 py-4 rounded-2xl ring-1 transition-all gap-3
+                        <div className={`w-full flex items-center relative h-14 px-4 gap-2 rounded-2xl ring-1 transition-all
                             ${error && step === 'password'
-                                ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500/50'
-                                : 'ring-gray-300 focus-within:ring-2 focus-within:ring-clx-green'
+                                ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500'
+                                : 'ring-gray-400 focus-within:ring-2 focus-within:ring-clx-green'
                             }`}>
                             <input 
                                 ref={passwordInputRef}
@@ -121,7 +113,7 @@ export default function SignIn() {
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 placeholder='Enter your password'
-                                className='w-full focus:outline-none transition-all placeholder:text-gray-400 pr-2'
+                                className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400'
                                 disabled={step === 'email'}
                             />
                             
@@ -139,22 +131,26 @@ export default function SignIn() {
                             {step === 'password' && (
                                 <button
                                     type='submit'
-                                    className='text-sm bg-clx-green text-white w-15 py-2 rounded-xl shrink-0 font-medium hover:bg-clx-green2 transition-all'
+                                    className='bg-clx-green text-white w-15 py-2 rounded-xl shrink-0 font-normal hover:bg-clx-green2 transition-all'
                                 >
-                                    <Link to='/messages'>Sign in</Link>
+                                    Sign in
                                 </button>
                             )}
                         </div>
-                        <div className="h-6 w-full text-left mt-1">
-                            {error && step === 'password' && <p className="text-[#e30000] text-sm">{error}</p>}
-                        </div>
                     </div>
                 </div>
+                
+                {/* Links footer */}
+                <div className='relative flex flex-col items-center gap-1 font-normal w-full'>
+                    {/* Centralized, Absolute Error Message Block */}
+                    {error && (step === 'email' || step === 'password') && (
+                        <p className="absolute -top-7 left-1/2 -translate-x-1/2 text-[#e30000] text-[13px] whitespace-nowrap">
+                            ! {error}
+                        </p>
+                    )}
 
-                {/* Secondary Actions */}
-                <div className='flex flex-col items-center font-semibold gap-1 font-fit mt-2'>
-                    <h1 className='text-sm font-medium flex items-center gap-1 text-clx-green hover:text-clx-green2 cursor-pointer transition-all'>Forgot your password? <ArrowUpRight size={16}/></h1>
-                    <h1 className='text-sm font-medium flex items-center gap-1'>
+                    <h1 className='flex items-center gap-1 text-clx-green hover:text-clx-green2 cursor-pointer transition-all'>Forgot your password? <ArrowUpRight size={16}/></h1>
+                    <h1 className='flex items-center gap-1'>
                         Don't have an account? 
                         <span className='flex items-center gap-1 text-clx-green hover:text-clx-green2 cursor-pointer transition-all'>
                             Request for one 
@@ -165,7 +161,7 @@ export default function SignIn() {
             </form>
 
             {/* Footer */}
-            <div className='absolute bottom-0 flex items-center gap-1 text-slate-400 pb-4'>
+            <div className='absolute bottom-0 flex items-center gap-1 text-slate-400'>
                 <Copyright size={12} />
                 <h1 className='text-[12px] font-fit'>Climax Lubricants Industries, 2026</h1>
             </div>
