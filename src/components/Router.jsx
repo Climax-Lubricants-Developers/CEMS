@@ -2,6 +2,9 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import SignIn from "../pages/SignIn";
 import Messages from "../pages/Messages";
+import Dashboard from "../pages/Dashboard";
+import Teams from "../pages/Teams";
+import Tasks from "../pages/Tasks";
 
 export const router = createBrowserRouter([
     // signin route
@@ -20,6 +23,9 @@ export const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             { path: '/messages', element: <Messages /> },
+            { path: '/dashboard', element: <Dashboard /> },
+            { path: '/teams', element: <Teams /> },
+            { path: 'tasks', element: <Tasks /> },
         ]
     }
 ]);

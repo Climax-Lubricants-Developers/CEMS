@@ -25,7 +25,7 @@ export default function SignIn() {
     const navigate = useNavigate();
 
     return (
-        <section className="min-h-screen flex items-center justify-center overflow-hidden bg-[#F0F4F9] text-sm">
+        <section className="min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-[#1c1c1d] text-sm">
             <Helmet>
                 <title>Sign in - Climax EMS</title>
                 <meta name='description' content='Climax EMS Staff Authentication' />

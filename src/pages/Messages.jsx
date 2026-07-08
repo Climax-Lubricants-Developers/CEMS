@@ -47,7 +47,7 @@ export default function Messages() {
 				<meta name='description' content='Climax EMS Staff Authentication' />
 			</Helmet>
 
-			<main className="max-w-360 w-full flex-1 flex mx-auto gap-1 overflow-hidden">
+			<main className="max-w-screen w-full flex-1 flex mx-auto gap-1 overflow-hidden">
 
 				{/*sidebar chat list*/}
 				<aside className="w-75 shrink-0 pt-6 flex flex-col gap-4">
@@ -67,8 +67,10 @@ export default function Messages() {
 					<hr className="border-slate-200 dark:border-[#5C5C5C] w-full" />
 
 					{/*active chat channels list*/}
-					<div className="flex flex-col overflow-y-auto max-h-150 gap-1">
-						<h1 className="text-[10px] text-gray-400 uppercase font-medium tracking-wider">All chats</h1>
+					<div className="flex flex-col overflow-y-auto max-h-150 gap-1 scrollbar-premium pr-1">
+						<div className="sticky top-0 z-50 bg-white dark:bg-[#1c1c1d]">
+							<h1 className="text-[10px] text-gray-400 uppercase font-medium tracking-wider ">All chats</h1>
+						</div>
 						{channels.length === 0 ? (
 							<div className="flex flex-1 items-center justify-center p-4">
                                 <p className="text-sm text-gray-400 text-center">No conversations found.</p>
@@ -79,7 +81,7 @@ export default function Messages() {
                                     {channels.map(chat => (
                                         <button 
                                             key={chat.id}
-                                            className={`bg-amber-50 flex items-center gap-3 p-3 w-full rounded-3xl text-left transition-all ${
+                                            className={`flex items-center gap-3 p-3 w-full rounded-3xl text-left transition-all ${
                                                 activeChannel === chat.id 
                                                     ? 'bg-clx-green text-white' 
                                                     : 'hover:bg-slate-100 dark:hover:bg-white/5'
@@ -141,7 +143,7 @@ export default function Messages() {
 							</button>
 						</div>
 					</section>
-					<aside className="flex flex-col items-center bg-slate-100 w-71 shrink-0 dark:bg-[#252728] rounded-2xl p-4 shadow">
+					<aside className="hidden flex-col items-center bg-slate-100 w-71 shrink-0 dark:bg-[#252728] rounded-2xl p-4 shadow">
 						<div className="flex flex-col items-center gap-1">
 							<img src={pfp7} className="size-20 rounded-full object-cover shadow mb-3"/>
 							<div className="flex flex-col items-center">

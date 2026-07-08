@@ -15,8 +15,57 @@
   --color-clx-green2: #004D2E;
 }
 
+@property --scrollbar-thumb-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
 @layer components {
   .input-search {
     @apply w-full pl-10 px-4 py-2.5 bg-slate-100 dark:bg-slate-100/5 focus:outline-none focus:border-clx-green rounded-full dark:border-white/20 cursor-pointer focus:bg-white focus:shadow dark:focus:bg-white/10 text-sm placeholder:text-sm placeholder:text-gray-500 transition-all;
   }
-}
+.scrollbar-premium {
+    /* 1. UNIFIED TRANSITIONS: Handle Chrome's custom property AND Firefox's native color standard */
+    transition: --scrollbar-thumb-color 0.25s ease-in-out, scrollbar-color 0.25s ease-in-out;
+    
+    /* 2. FIREFOX INITIAL STATE: Keep width permanent to prevent snaps, but make colors completely invisible */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+
+    /* 3. CHROME INITIAL STATE */
+    --scrollbar-thumb-color: transparent;
+    overflow-y: overlay; 
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      border-radius: 9999px;
+      background-color: var(--scrollbar-thumb-color);
+    }
+
+    /* 4. UNIFIED HOVER STATES */
+    &:hover {
+      /* Chrome Engine Trigger */
+      --scrollbar-thumb-color: rgba(148, 163, 184, 0.5); 
+
+      /* Firefox Engine Trigger (Thumb Color, Track Color) */
+      scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+
+      /* Dark Mode Overrides */
+      :where(.dark &) {
+        --scrollbar-thumb-color: rgba(255, 255, 255, 0.25); 
+        scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+      }
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      --scrollbar-thumb-color: var(--color-clx-green) !important;
+    }
+  }}
