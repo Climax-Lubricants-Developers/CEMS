@@ -5,6 +5,7 @@ import Messages from "../pages/Messages";
 import Dashboard from "../pages/Dashboard";
 import Teams from "../pages/Teams";
 import Tasks from "../pages/Tasks";
+import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
     // signin route
@@ -27,5 +28,10 @@ export const router = createBrowserRouter([
             { path: '/teams', element: <Teams /> },
             { path: 'tasks', element: <Tasks /> },
         ]
-    }
+    },
+
+    {
+        element: <NotFound />,
+        path: '*',
+    },
 ]);

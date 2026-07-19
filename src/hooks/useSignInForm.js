@@ -24,7 +24,7 @@ export function useSignInForm() {
                 return;
             }
 
-            if (!trimmedEmail.endsWith('@climaxlubs.com')) {
+            if (!trimmedEmail.endsWith('climaxlubs.com')) {
                 setError("Email should end with '@climaxlubs.com'");
                 emailInputRef.current?.focus();
                 return;
@@ -38,7 +38,7 @@ export function useSignInForm() {
                 passwordInputRef.current?.focus();
                 return;
             } else {
-                navigate('/messages');
+                navigate('/dashboard');
             }
             
             setError('');

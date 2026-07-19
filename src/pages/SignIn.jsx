@@ -1,5 +1,6 @@
 import { ArrowUpRight, ChevronRight, CircleUserRound, CircleX, Copyright, Eye, EyeOff } from 'lucide-react';
 import logo from '../assets/slate900_logo.svg';
+import logo2 from '../assets/logowhite_2.svg';
 import { useSignInForm } from '../hooks/useSignInForm.js';
 import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
@@ -32,11 +33,12 @@ export default function SignIn() {
             </Helmet>
             <form 
                 onSubmit={handleFormSubmit}
-                className="relative max-w-112.5 w-full flex flex-col items-center justify-between gap-8 px-8 py-10 text-slate-900 bg-white rounded-4xl shadow shadow-slate-400/70 overflow-hidden"
+                className="relative max-w-112.5 w-full flex flex-col items-center justify-between gap-8 px-8 py-10 text-slate-900 dark:text-white bg-white dark:bg-[#2c2c2d] rounded-4xl shadow shadow-slate-400/70 dark:shadow-black/50 overflow-hidden"
             >
                 {/* Header */}
                 <header className='m'>
-                    <img src={logo} className="h-12" alt="Climax Logo" />
+                    <img src={logo} className="h-12 dark:hidden" alt="Climax Logo" />
+                    <img src={logo2} className="h-12 hidden dark:block" alt="Climax Logo" />
                 </header>
 
                 {/* Sliding Viewport */}
@@ -46,11 +48,11 @@ export default function SignIn() {
                 >
                     {/* Step 1: Email Section */}
                     <div className='min-w-full flex flex-col items-center shrink-0 gap-8'>
-                        <h2 className='py-0.5 font-normal'>Sign in with your Climax EMS account</h2>
-                        <div className={`w-full h-14 flex items-center px-4 gap-2 rounded-2xl ring-1 transition-all
+                        <h2 className='py-0.5 font-normal text-slate-900 dark:text-white'>Sign in with your Climax EMS account</h2>
+                        <div className={`w-full h-14 flex items-center px-4 gap-2 rounded-2xl ring-1 transition-all bg-white dark:bg-[#1c1c1d]
                             ${error && step === 'email'
                                 ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500'
-                                : 'ring-gray-400 focus-within:ring-2 focus-within:ring-clx-green'
+                                : 'ring-gray-400 dark:ring-[#5C5C5C] focus-within:ring-2 focus-within:ring-clx-green'
                             }`}>
                             <input 
                                 ref={emailInputRef}
@@ -60,7 +62,7 @@ export default function SignIn() {
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                                 placeholder='Email@staff.climaxlubs.com'
-                                className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400'
+                                className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-white/50 bg-white dark:bg-[#1c1c1d] text-slate-900 dark:text-white'
                                 disabled={step === 'password'}
                             />
 
@@ -68,10 +70,10 @@ export default function SignIn() {
                                 <button
                                     type='button'
                                     onClick={handleClearEmail}
-                                    className='text-gray-400 hover:text-gray-600 cursor-pointer shrink-0 transition-colors'
+                                    className='text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-400 cursor-pointer shrink-0 transition-colors'
                                     aria-label="Clear email"
                                 >
-                                    <CircleX size={16} />
+                                    <CircleX size={16} className='dark:text-white/60'/>
                                 </button>
                             )}
 
@@ -91,19 +93,19 @@ export default function SignIn() {
                         <button
                             type='button'
                             onClick={handleBack}
-                            className='active:ring-2 active:ring-clx-green group flex items-center bg-slate-100 hover:bg-slate-200 w-auto px-3 py-1 rounded-full transition-all cursor-pointer select-none max-w-full'
+                            className='active:ring-2 active:ring-clx-green group flex items-center bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 w-auto px-3 py-1 rounded-full transition-all cursor-pointer select-none max-w-full'
                         >
                             <CircleUserRound size={16} className='text-clx-green mr-1.5 shrink-0' />
                             <span className='block max-w-50 truncate text-clx-green font-normal leading-none align-middle mb-0.5'>
                                 {email}
                             </span>
-                            <CircleX size={16} className='text-clx-green2 ml-1.5 shrink-0'/>
+                            <CircleX size={16} className='text-clx-green2 dark:text-white/50 ml-1.5 shrink-0'/>
                         </button>
                         
-                        <div className={`w-full flex items-center relative h-14 px-4 gap-2 rounded-2xl ring-1 transition-all
+                        <div className={`w-full flex items-center relative h-14 px-4 gap-2 rounded-2xl ring-1 transition-all bg-white dark:bg-[#1c1c1d]
                             ${error && step === 'password'
                                 ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500'
-                                : 'ring-gray-400 focus-within:ring-2 focus-within:ring-clx-green'
+                                : 'ring-gray-400 dark:ring-[#5C5C5C] focus-within:ring-2 focus-within:ring-clx-green'
                             }`}>
                             <input 
                                 ref={passwordInputRef}
@@ -113,7 +115,7 @@ export default function SignIn() {
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 placeholder='Enter your password'
-                                className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400'
+                                className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-white/50 bg-white dark:bg-[#1c1c1d] text-slate-900 dark:text-white'
                                 disabled={step === 'email'}
                             />
                             
@@ -121,7 +123,7 @@ export default function SignIn() {
                                 <button
                                     type='button'
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className='text-gray-400 hover:text-gray-600 cursor-pointer shrink-0 transition-colors'
+                                    className='text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-400 cursor-pointer shrink-0 transition-colors'
                                     aria-label={showPassword ? "Hide password" : "Show password"}
                                 >
                                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -149,10 +151,10 @@ export default function SignIn() {
                         </p>
                     )}
 
-                    <h1 className='flex items-center gap-1 text-clx-green hover:text-clx-green2 cursor-pointer transition-all'>Forgot your password? <ArrowUpRight size={16}/></h1>
-                    <h1 className='flex items-center gap-1'>
+                    <h1 className='flex items-center gap-1 text-blue-600 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer transition-all'>Forgot your password? <ArrowUpRight size={16}/></h1>
+                    <h1 className='flex items-center gap-1 text-slate-900 dark:text-white'>
                         Don't have an account? 
-                        <span className='flex items-center gap-1 text-clx-green hover:text-clx-green2 cursor-pointer transition-all'>
+                        <span className='flex items-center gap-1 text-blue-600 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer transition-all'>
                             Request for one 
                             <ArrowUpRight size={16} />
                         </span>
@@ -161,7 +163,7 @@ export default function SignIn() {
             </form>
 
             {/* Footer */}
-            <div className='absolute bottom-0 flex items-center gap-1 text-slate-400'>
+            <div className='absolute bottom-0 flex items-center gap-1 text-slate-400 dark:text-white/70'>
                 <Copyright size={12} />
                 <h1 className='text-[12px] font-fit'>Climax Lubricants Industries, 2026</h1>
             </div>

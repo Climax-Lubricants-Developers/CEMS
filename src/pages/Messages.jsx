@@ -54,7 +54,7 @@ export default function Messages() {
 					{/*header*/}
 					<div className="flex flex-col gap-4">
 						<div className="flex items-center justify-between">
-							<h1 className="text-[32px] font-normal">Messages</h1>
+							<h1 className="text-[32px] font-medium">Messages</h1>
 							<CirclePlus size={24}/>
 						</div>
 						<div className="relative flex items-center text-gray-500">
