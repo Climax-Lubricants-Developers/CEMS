@@ -41,9 +41,10 @@ export default function SignIn() {
 
             {/* Form Section */}
             <div className='w-full lg:w-1/2 p-6 sm:p-10 dark:bg-[#2c2c2d] flex flex-col justify-between lg:justify-center items-center relative min-h-[calc(100vh-12rem)] lg:min-h-screen'>
+                {/* Form Card Container - Clips cleanly at the card boundaries, not the input edge */}
                 <form 
                     onSubmit={handleFormSubmit}
-                    className="max-w-md w-full flex flex-col p-2 gap-6 text-slate-900 dark:text-white my-auto lg:my-0 overflow-hidden"
+                    className="max-w-md w-full flex flex-col p-2 gap-6 text-slate-900 dark:text-white overflow-hidden relative"
                 >
                     {/* Header */}
                     <header>
@@ -52,18 +53,21 @@ export default function SignIn() {
                         </h1>
                     </header>
 
-                    {/* Sliding Viewport */}
-                    <div 
-                        className="flex w-full transition-transform duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] gap-4 [--slide-offset:-105%] lg:[--slide-offset:-103.5%]"
-                        style={{ transform: step === 'password' ? 'translateX(var(--slide-offset))' : 'translateX(0%)' }}
-                    >
-                        {/* Username Section */}
-                        <div className='min-w-full flex flex-col items-start shrink-0 gap-6'>
+                    {/* Viewport - No harsh overflow clip here! */}
+                    <div className="grid grid-cols-1 w-full relative">
+                        
+                        {/* Username Step */}
+                        <div 
+                            className={`col-start-1 row-start-1 w-full flex flex-col items-start gap-6 transition-all duration-300 ease-out ${
+                                step === 'password' 
+                                    ? '-translate-x-12 opacity-0 pointer-events-none' 
+                                    : 'translate-x-0 opacity-100'
+                            }`}
+                        >
                             <h2 className='font-medium text-slate-900 dark:text-white'>
                                 Climax ERP Account
                             </h2>
                             
-                            {/* Input Container */}
                             <div className={`w-full h-14 flex items-center px-4 gap-2 rounded-sm transition-all bg-slate-100 dark:bg-[#1c1c1d]
                                 ${error && step === 'username'
                                     ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500'
@@ -94,8 +98,14 @@ export default function SignIn() {
                             </div>
                         </div>
 
-                        {/* Password Section */}
-                        <div className='min-w-full flex flex-col shrink-0 gap-6'>
+                        {/* Password Step */}
+                        <div 
+                            className={`col-start-1 row-start-1 w-full flex flex-col gap-6 transition-all duration-300 ease-out ${
+                                step === 'password' 
+                                    ? 'translate-x-0 opacity-100' 
+                                    : 'translate-x-12 opacity-0 pointer-events-none'
+                            }`}
+                        >
                             <div className='flex justify-between items-center'>
                                 <div>
                                     <h1 className='max-w-[200px] truncate text-clx-green font-medium'>
@@ -109,7 +119,6 @@ export default function SignIn() {
                                 </button>
                             </div>
                             
-                            {/* Input Container */}
                             <div className={`w-full flex items-center relative h-14 px-4 gap-2 rounded-sm transition-all bg-slate-100 dark:bg-[#1c1c1d]
                                 ${error && step === 'password'
                                     ? 'focus-within:ring-2 ring-red-500 focus-within:ring-red-500'
@@ -139,6 +148,7 @@ export default function SignIn() {
                                 )}
                             </div>
                         </div>
+
                     </div>
 
                     {/* Main Action Button */}
@@ -154,7 +164,6 @@ export default function SignIn() {
                     >
                         {step === 'username' ? 'Next' : 'Sign in'}
                     </button>
-
                     {/* Links footer */}
                     <div className='relative flex flex-col gap-1 items-start font-normal w-full text-[12px]'>
                         {/* Centralized Error Message */}
