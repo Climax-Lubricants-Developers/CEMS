@@ -2,31 +2,25 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function useSignInForm() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [step, setStep] = useState('email');
+    const [step, setStep] = useState('username');
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
-    const emailInputRef = useRef(null);
+    const usernameInputRef = useRef(null);
     const passwordInputRef = useRef(null);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        if (step === 'email') {
-            const trimmedEmail = email.trim();
-            if (!trimmedEmail || !trimmedEmail.includes('@')) {
-                setError('Please enter a valid email address.');
-                emailInputRef.current?.focus();
-                return;
-            }
-
-            if (!trimmedEmail.endsWith('climaxlubs.com')) {
-                setError("Email should end with '@climaxlubs.com'");
-                emailInputRef.current?.focus();
+        if (step === 'username') {
+            const trimmedUsername = username.trim();
+            if (!trimmedUsername) {
+                setError('Please enter your Username');
+                usernameInputRef.current?.focus();
                 return;
             }
 
@@ -49,17 +43,17 @@ export function useSignInForm() {
         setPassword('');
         setError('');
         setShowPassword(false);
-        setStep('email');
+        setStep('username');
     };
 
-    const handleClearEmail = () => {
-        setEmail('');
-        emailInputRef.current?.focus();
+    const handleClearUsername = () => {
+        setUsername('');
+        usernameInputRef.current?.focus();
     };
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            if (step === 'email') emailInputRef.current?.focus();
+            if (step === 'username') usernameInputRef.current?.focus();
             else if (step === 'password') passwordInputRef.current?.focus();
         }, 300);
         return () => clearTimeout(timeout);
@@ -67,18 +61,18 @@ export function useSignInForm() {
 
     // Expose only what the UI actually needs to know about
     return {
-        email,
-        setEmail,
+        username,
+        setUsername,
         password,
         setPassword,
         step,
         error,
         showPassword,
         setShowPassword,
-        emailInputRef,
+        usernameInputRef,
         passwordInputRef,
         handleFormSubmit,
         handleBack,
-        handleClearEmail,
+        handleClearUsername,
     };
 }

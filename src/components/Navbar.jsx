@@ -50,7 +50,7 @@ export default function Navbar() {
 				<div className="max-w-screen w-full h-14 mx-auto flex items-center justify-between">
 					<img src={logo} className="h-8 dark:hidden" />
 					<img src={logo2} className="h-8 hidden dark:block" />
-					<div className="flex items-center gap-2 h-full">
+					<div className="flex gap-2 h-full">
 						<nav className="flex gap-2 h-full">
 							{navItems.map(item => {
 								const Icon = item.icon;
