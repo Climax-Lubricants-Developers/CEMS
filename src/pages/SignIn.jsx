@@ -1,7 +1,6 @@
 import { CircleX, Copyright, Eye, EyeOff } from 'lucide-react';
 import { useSignInForm } from '../hooks/useSignInForm.js';
 import { Helmet } from 'react-helmet-async';
-import { useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import sidebarimage from '../bg/IMG_0969.JPG';
 
@@ -25,24 +24,32 @@ export default function SignIn() {
     const navigate = useNavigate();
 
     return (
-        <section className="min-h-screen flex overflow-hidden bg-white dark:bg-[#1c1c1d] text-sm">
+        <section className="min-h-screen flex flex-col lg:flex-row overflow-x-hidden bg-white dark:bg-[#1c1c1d] text-sm">
             <Helmet>
                 <title>Sign in - Climax EMS</title>
                 <meta name='description' content='Climax EMS Staff Authentication' />
             </Helmet>
             
-            <div className='w-1/2 relative overflow-hidden '>
-                <img src={sidebarimage} alt='sidebarimage' className='w-full h-full object-cover object-bottom-left' />
+            {/* Sidebar / Banner Image */}
+            <div className='w-full lg:w-1/2 h-48 sm:h-64 lg:h-auto relative overflow-hidden shrink-0'>
+                <img 
+                    src={sidebarimage} 
+                    alt='sidebarimage' 
+                    className='w-full h-full object-cover object-bottom-left' 
+                />
             </div>
 
-            <div className='p-10 dark:bg-[#2c2c2d] w-1/2 flex items-center justify-center relative'>
+            {/* Form Section */}
+            <div className='w-full lg:w-1/2 p-6 sm:p-10 dark:bg-[#2c2c2d] flex flex-col justify-between lg:justify-center items-center relative min-h-[calc(100vh-12rem)] lg:min-h-screen'>
                 <form 
                     onSubmit={handleFormSubmit}
-                    className="max-w-md w-full flex flex-col p-2 gap-6 text-slate-900 dark:text-white overflow-hidden"
+                    className="max-w-md w-full flex flex-col p-2 gap-6 text-slate-900 dark:text-white my-auto lg:my-0 overflow-hidden"
                 >
                     {/* Header */}
                     <header>
-                        <h1 className='text-[48px] font-medium tracking-tight'>Sign In</h1>
+                        <h1 className='text-3xl sm:text-4xl lg:text-[48px] font-medium tracking-tight'>
+                            Sign In
+                        </h1>
                     </header>
 
                     {/* Sliding Viewport */}
@@ -64,13 +71,13 @@ export default function SignIn() {
                                 }`}>
                                 <input 
                                     ref={usernameInputRef}
-                                    type={'username'}
+                                    type='text'
                                     name='username'
                                     autoComplete='username'
                                     value={username}
                                     onChange={e => setUsername(e.target.value)}
                                     placeholder='Username'
-                                    className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-white/50 text-slate-900 dark:text-white'
+                                    className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-white/50 text-slate-900 dark:text-white bg-transparent'
                                     disabled={step === 'password'}
                                 />
 
@@ -89,14 +96,16 @@ export default function SignIn() {
 
                         {/* Password Section */}
                         <div className='min-w-full flex flex-col shrink-0 gap-6'>
-                            <div className='flex justify-between'>
+                            <div className='flex justify-between items-center'>
                                 <div>
-                                    <h1 className='max-w-50 truncate text-clx-green font-medium'>
+                                    <h1 className='max-w-[200px] truncate text-clx-green font-medium'>
                                         {username}
                                     </h1>
                                 </div>
                                 <button type='button' onClick={handleBack}>
-                                    <h2 className='underline underline-offset-2 hover:font-medium transition-all'>Change</h2>
+                                    <h2 className='underline underline-offset-2 hover:font-medium transition-all'>
+                                        Change
+                                    </h2>
                                 </button>
                             </div>
                             
@@ -114,7 +123,7 @@ export default function SignIn() {
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                     placeholder='Enter your password'
-                                    className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-white/50 text-slate-900 dark:text-white'
+                                    className='w-full focus:outline-none transition-all placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-white/50 text-slate-900 dark:text-white bg-transparent'
                                     disabled={step === 'username'}
                                 />
                                 
@@ -143,7 +152,7 @@ export default function SignIn() {
                                 : 'opacity-100 cursor-pointer hover:bg-clx-green/80'
                             }`}
                     >
-                        {step === 'usename' ? 'Next' : 'Sign in'}
+                        {step === 'username' ? 'Next' : 'Sign in'}
                     </button>
 
                     {/* Links footer */}
@@ -158,9 +167,9 @@ export default function SignIn() {
                         <h1 className='flex items-center gap-1 font-medium underline underline-offset-1 text-blue-600 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer transition-all'>
                             Trouble signing in?
                         </h1>
-                        <h1 className='flex items-center gap-2 text-slate-900 dark:text-white'>
-                            Don't have an account? 
-                            <span className='flex items-center gap-1 font-medium underline underline-offset-1 text-blue-600 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer transition-all'>
+                        <h1 className='flex flex-wrap items-center gap-1 text-slate-900 dark:text-white'>
+                            <span>Don't have an account?</span> 
+                            <span className='font-medium underline underline-offset-1 text-blue-600 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 cursor-pointer transition-all'>
                                 Request for one 
                             </span>
                         </h1>
@@ -168,7 +177,7 @@ export default function SignIn() {
                 </form>
 
                 {/* Footer */}
-                <div className='absolute bottom-4 flex items-center gap-1 text-slate-400 dark:text-white/70'>
+                <div className='mt-8 lg:mt-0 lg:absolute lg:bottom-4 flex items-center gap-1 text-slate-400 dark:text-white/70'>
                     <Copyright size={12} />
                     <h1 className='text-[12px] font-fit'>Climax Lubricants Industries, 2026</h1>
                 </div>
