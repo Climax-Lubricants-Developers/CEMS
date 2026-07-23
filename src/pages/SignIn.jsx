@@ -54,8 +54,8 @@ export default function SignIn() {
 
                     {/* Sliding Viewport */}
                     <div 
-                        className='flex w-full transition-transform duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] gap-4'
-                        style={{ transform: `translateX(${step === 'password' ? '-103.5%' : '0%'})` }}
+                        className="flex w-full transition-transform duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] gap-4 [--slide-offset:-105%] lg:[--slide-offset:-103.5%]"
+                        style={{ transform: step === 'password' ? 'translateX(var(--slide-offset))' : 'translateX(0%)' }}
                     >
                         {/* Username Section */}
                         <div className='min-w-full flex flex-col items-start shrink-0 gap-6'>
